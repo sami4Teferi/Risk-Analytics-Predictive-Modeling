@@ -79,3 +79,21 @@ class exploratory_data_analysis:
         self.data = self.data[(self.data[column] >= lower_bound) & (self.data[column] <= upper_bound)]
         return "success", self.data
     
+    def show_outliers(self, column):
+            # Calculate IQR and bounds
+        q1 = self.data[column].quantile(0.25)
+        q3 = self.data[column].quantile(0.75)
+        iqr = q3 - q1
+        lower_bound = q1 - 1.5 * iqr
+        upper_bound = q3 + 1.5 * iqr
+
+        # Identify outliers
+        outliers = self.data[(self.data[column] < lower_bound) | (self.data[column] > upper_bound)]
+        print(f"Number of outliers in {column}: {outliers.shape[0]}")
+        print(f"Outlier values in {column}:\n{outliers[[column]]}")
+
+        # Boxplot for visualization
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(x=self.data[column])
+        plt.title(f"Boxplot of {column} (Outliers Highlighted)")
+        plt.show()
