@@ -27,9 +27,10 @@ def handle_catagorical_outliers(data,column , valid_values , replecment_values=N
 
 def calculate_kpis(data):
     data['ClaimFrequency'] = (data['TotalClaims'] > 0).astype(int)
-    data['ClaimSeverity'] = data['TotalClaims'] / data['NumberOfClaims'].replace(0, 1)
+    data['ClaimSeverity'] = data['TotalClaims']  # or any logic you want
     data['Margin'] = data['TotalPremium'] - data['TotalClaims']
     return data
+
 
 # perform chi-squared test for Province vs Claim Frequency
 def ab_test_provinces(data):
