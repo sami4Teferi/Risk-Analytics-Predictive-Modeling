@@ -4,3 +4,4 @@ dvc
 scipy
 scikit-learn
 xgboost
+shap
