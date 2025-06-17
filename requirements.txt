@@ -2,3 +2,4 @@ matplotlib
 seaborn 
 dvc
 scipy
+scikit-learn
