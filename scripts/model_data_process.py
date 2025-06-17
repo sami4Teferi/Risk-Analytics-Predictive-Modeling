@@ -15,7 +15,14 @@ def missing_values(data):
 def delete_unwanted_column(data ,columns_to_drop):
     data1 = data.drop(columns=columns_to_drop)
     return data1
+# Function to display duplicated rows based on all columns
+def show_duplicated_rows(data):
+    duplicated_rows = data[data.duplicated(keep=False)]  # keep=False shows all duplicates, not just subsequent ones
+    print(f"Number of duplicated rows: {duplicated_rows.shape[0]}")
+    return duplicated_rows
+    
 #delete duplicated rows
+
 def delete_duplicated_rows(data):
     data = data.drop_duplicates(keep="first")
     return data
